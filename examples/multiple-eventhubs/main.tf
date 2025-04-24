@@ -61,10 +61,10 @@ resource "azurerm_role_assignment" "this" {
 locals {
   event_hubs = {
     eh_capture_example = {
-      namespace_name      = module.event_hub.resource.id
+      namespace_name      = module.event_hub.resource.name
       partition_count     = 1
       message_retention   = 7
-      resource_group_name = module.event_hub.resource.name
+      resource_group_name = azurerm_resource_group.this.name
 
       capture_description = {
         enabled  = true
@@ -84,10 +84,10 @@ locals {
       }
     },
     eh_another_hub = {
-      namespace_name      = module.event_hub.resource.id
+      namespace_name      = module.event_hub.resource.name
       partition_count     = 2
       message_retention   = 3
-      resource_group_name = module.event_hub.resource.name
+      resource_group_name = azurerm_resource_group.this.name
 
       role_assignments = {
         eh_receiver_role = {

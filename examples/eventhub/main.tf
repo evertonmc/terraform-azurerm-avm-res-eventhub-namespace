@@ -37,10 +37,10 @@ resource "azurerm_resource_group" "this" {
 locals {
   event_hubs = {
     my_event_hub = {
-      namespace_name      = module.event_hub.resource.id
+      namespace_name      = module.event_hub.resource.name
       partition_count     = 1
       message_retention   = 7
-      resource_group_name = module.event_hub.resource.name
+      resource_group_name = azurerm_resource_group.this.name
     }
   }
 }
